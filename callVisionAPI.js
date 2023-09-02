@@ -117,7 +117,7 @@ function writeToSpreadsheet() {
       return [item];
     });
   
-  // 名前定義範囲に値を設定
+  // 名前定義範囲に値を設定 あ
   range.setValues(outputArray);
   
   }
