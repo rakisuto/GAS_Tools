@@ -1,0 +1,16 @@
+{
+  "timeZone": "Etc/GMT-9",
+  "dependencies": {
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "sheets": {
+    "macros": [{
+      "menuName": "無題のマクロ",
+      "functionName": "myFunction"
+    }, {
+      "menuName": "無題のマクロ 1",
+      "functionName": "myFunction1"
+    }]
+  }
+}

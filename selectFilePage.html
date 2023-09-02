@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+      <script>
+        // ここでサーバーサイドから受け取ったfolderIdを使って何か処理をする
+        document.addEventListener("DOMContentLoaded", function() {
+          document.getElementById('folderId').value = folderIdFromServer;
+        });
+      </script>
+  </head>
+  <body>
+    Folder ID: <input type="text" id="folderId" readonly><br>
+    Files: <select id="fileList"></select><br>
+    <button onclick="fetchFiles()">Fetch Files</button>
+    <button onclick="selectFile()">Select</button>
+    
+    <script>
+      function fetchFiles() {
+        var folderId = document.getElementById('folderId').value;
+        google.script.run.withSuccessHandler(showFiles).getFiles(folderId);
+      }
+      
+      function showFiles(files) {
+        var fileList = document.getElementById('fileList');
+        fileList.innerHTML = "";
+        for (var i = 0; i < files.length; i++) {
+          var option = document.createElement('option');
+          option.value = files[i].id;
+          option.text = files[i].name;
+          fileList.appendChild(option);
+        }
+      }
+      
+      //
+      function selectFile() {
+        console.log("selectFile function called.");
+        var selectedFileId = document.getElementById('fileList').value;
+        console.log("Selected File ID: " + selectedFileId);
+        google.script.run.withSuccessHandler(closeDialog).processFile(selectedFileId);
+      }
+
+      function closeDialog() {
+        google.script.host.close();
+      }
+      
+    </script>
+  </body>
+</html>
